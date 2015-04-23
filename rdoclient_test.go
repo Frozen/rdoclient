@@ -1,17 +1,16 @@
 package rdoclient
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 const (
 	apikey = "26a65c82-7091-45f7-af12-414589392fb0"
 )
 
-
 func TestGenerateIntegers(t *testing.T) {
-	myints,err := GenerateIntegers(apikey,10,1,10,true)
+	myints, err := GenerateIntegers(apikey, 10, 1, 10, true)
 
 	if err != nil {
 		fmt.Println(err)
@@ -23,7 +22,6 @@ func TestGenerateIntegers(t *testing.T) {
 		t.Fail()
 	}
 
-
 	if testing.Verbose() {
 		fmt.Println("OK GenerateDecimalIntegers: ", myints)
 	}
@@ -31,13 +29,12 @@ func TestGenerateIntegers(t *testing.T) {
 }
 
 func TestGenerateDecimalFractions(t *testing.T) {
-	myfs,err := GenerateDecimalFractions(apikey,10,10,true)
+	myfs, err := GenerateDecimalFractions(apikey, 10, 10, true)
 
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
 	}
-
 
 	if len(myfs) != 10 {
 		t.Log("Expected 10 floating points but got ", len(myfs))
@@ -51,13 +48,12 @@ func TestGenerateDecimalFractions(t *testing.T) {
 }
 
 func TestGenerateGaussians(t *testing.T) {
-	myfs,err := GenerateGaussians(apikey,10,100,20,5)
+	myfs, err := GenerateGaussians(apikey, 10, 100, 20, 5)
 
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
 	}
-
 
 	if len(myfs) != 10 {
 		t.Log("Expected 10 floating points but got ", len(myfs))
@@ -71,13 +67,12 @@ func TestGenerateGaussians(t *testing.T) {
 }
 
 func TestGenerateStrings(t *testing.T) {
-	mys,err := GenerateStrings(apikey,10,10,"abcdefghijklmnopqrstuvwxyz",true)
+	mys, err := GenerateStrings(apikey, 10, 10, "abcdefghijklmnopqrstuvwxyz", true)
 
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
 	}
-
 
 	if len(mys) != 10 {
 		t.Log("Expected 10 strings but got ", len(mys))
@@ -91,13 +86,12 @@ func TestGenerateStrings(t *testing.T) {
 }
 
 func TestGenerateUUIDs(t *testing.T) {
-	mys,err := GenerateUUIDs(apikey,10)
+	mys, err := GenerateUUIDs(apikey, 10)
 
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
 	}
-
 
 	if len(mys) != 10 {
 		t.Log("Expected 10 strings but got ", len(mys))
@@ -111,13 +105,12 @@ func TestGenerateUUIDs(t *testing.T) {
 }
 
 func TestGenerateBlobs(t *testing.T) {
-	mys,err := GenerateBlobs(apikey,10,8)
+	mys, err := GenerateBlobs(apikey, 10, 8)
 
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
 	}
-
 
 	if len(mys) != 10 {
 		t.Log("Expected 10 sets of 5 bytes but got ", len(mys))
@@ -129,24 +122,22 @@ func TestGenerateBlobs(t *testing.T) {
 	}
 }
 
-
 func TestGetUsage(t *testing.T) {
-	res,err := GetUsage(apikey)
+	res, err := GetUsage(apikey)
 
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
 	}
 
-
 	if testing.Verbose() {
-		fmt.Printf("Usage: status: %s, creationTime: %s, bitsLeft: %d, requestsLeft: %d, totalBits: %d, totalRequests: %d\n",res.Result.Status, res.Result.CreationTime, res.Result.BitsLeft, res.Result.RequestsLeft, res.Result.TotalBits, res.Result.TotalRequests)
+		fmt.Printf("Usage: status: %s, creationTime: %s, bitsLeft: %d, requestsLeft: %d, totalBits: %d, totalRequests: %d\n", res.Result.Status, res.Result.CreationTime, res.Result.BitsLeft, res.Result.RequestsLeft, res.Result.TotalBits, res.Result.TotalRequests)
 	}
 
 }
 
 func TestInvalidkey(t *testing.T) {
-	_,err := GetUsage("foobar")
+	_, err := GetUsage("foobar")
 
 	if err != nil {
 		if testing.Verbose() {
@@ -157,11 +148,4 @@ func TestInvalidkey(t *testing.T) {
 		t.Fail()
 	}
 
-
-
-
 }
-
-
-
-
