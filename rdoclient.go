@@ -135,6 +135,7 @@ type RdoResult struct {
 	RequestsLeft  int    `json:"requestsLeft"`
 	TotalBits     int    `json:"totalBits"`
 	TotalRequests int    `json:"totalRequests"`
+	Signature     string `json:"signature"`
 }
 
 type RandomData struct {
@@ -175,6 +176,18 @@ func GenerateIntegers(apikey string, n, min, max int, replacement bool) ([]int, 
 	}
 
 	return resultints, nil
+
+}
+
+func Call(apikey string, method string, id interface{}, n int, min int, max int, replacement bool) (JsonResult, error) {
+	intParams := GenIntParams{ApiKey: apikey, N: n, Min: min, Max: max, Replacement: replacement}
+	result, err := call(RDO_URL, method, id, intParams)
+
+	if err != nil {
+		return JsonResult{}, err
+	}
+
+	return result, nil
 
 }
 

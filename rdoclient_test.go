@@ -149,3 +149,19 @@ func TestInvalidkey(t *testing.T) {
 	}
 
 }
+
+
+func TestCall(t *testing.T) {
+
+	rs, err := Call(apikey, "generateSignedIntegers", 2, 1, 1, 20, true)
+	if err != nil {
+		t.Error(err)
+	}
+
+	data := rs.Result.Random.Data
+
+	if len(data) != 1 {
+		t.Fatal("expects 1 result, but got ", len(data))
+	}
+
+}
