@@ -139,8 +139,12 @@ type RdoResult struct {
 }
 
 type RandomData struct {
-	Data     []interface{} `json:"data"`
-	BitsUsed int           `json:"bitsUsed"`
+	Data           []interface{} `json:"data"`
+	BitsUsed       int           `json:"bitsUsed"`
+	Method         string        `json:"method"`
+	HashedApiKey   string        `json:"hashedApiKey"`
+	CompletionTime string        `json:"completionTime"`
+	SerialNumber   int64         `json:"serialNumber"`
 }
 
 type JsonError struct {
