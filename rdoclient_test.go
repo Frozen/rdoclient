@@ -164,4 +164,16 @@ func TestCall(t *testing.T) {
 		t.Fatal("expects 1 result, but got ", len(data))
 	}
 
+	if 20 != rs.Result.Random.Max {
+		t.Error("max value mismatch")
+	}
+
+	if 1 != rs.Result.Random.Min {
+		t.Error("mix value mismatch")
+	}
+
+	if rs.Result.Random.Replacement != true {
+		t.Error("replacement flag mismatch")
+	}
+
 }

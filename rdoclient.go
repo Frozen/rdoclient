@@ -145,6 +145,11 @@ type RandomData struct {
 	HashedApiKey   string        `json:"hashedApiKey"`
 	CompletionTime string        `json:"completionTime"`
 	SerialNumber   int64         `json:"serialNumber"`
+	Max            int64         `json:"max"`
+	Min            int64         `json:"min"`
+	N              int64         `json:"n"`
+	Base           int64         `json:"base"`
+	Replacement    bool          `json:"replacement"`
 }
 
 type JsonError struct {
