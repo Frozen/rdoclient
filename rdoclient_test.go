@@ -3,6 +3,7 @@ package rdoclient
 import (
 	"fmt"
 	"testing"
+	"net/http"
 )
 
 const (
@@ -10,7 +11,7 @@ const (
 )
 
 func TestGenerateIntegers(t *testing.T) {
-	myints, err := GenerateIntegers(apikey, 10, 1, 10, true)
+	myints, err := GenerateIntegers(http.DefaultClient, apikey, 10, 1, 10, true)
 
 	if err != nil {
 		fmt.Println(err)
@@ -29,7 +30,7 @@ func TestGenerateIntegers(t *testing.T) {
 }
 
 func TestGenerateDecimalFractions(t *testing.T) {
-	myfs, err := GenerateDecimalFractions(apikey, 10, 10, true)
+	myfs, err := GenerateDecimalFractions(http.DefaultClient, apikey, 10, 10, true)
 
 	if err != nil {
 		fmt.Println(err)
@@ -48,7 +49,7 @@ func TestGenerateDecimalFractions(t *testing.T) {
 }
 
 func TestGenerateGaussians(t *testing.T) {
-	myfs, err := GenerateGaussians(apikey, 10, 100, 20, 5)
+	myfs, err := GenerateGaussians(http.DefaultClient, apikey, 10, 100, 20, 5)
 
 	if err != nil {
 		fmt.Println(err)
@@ -67,7 +68,7 @@ func TestGenerateGaussians(t *testing.T) {
 }
 
 func TestGenerateStrings(t *testing.T) {
-	mys, err := GenerateStrings(apikey, 10, 10, "abcdefghijklmnopqrstuvwxyz", true)
+	mys, err := GenerateStrings(http.DefaultClient, apikey, 10, 10, "abcdefghijklmnopqrstuvwxyz", true)
 
 	if err != nil {
 		fmt.Println(err)
@@ -86,7 +87,7 @@ func TestGenerateStrings(t *testing.T) {
 }
 
 func TestGenerateUUIDs(t *testing.T) {
-	mys, err := GenerateUUIDs(apikey, 10)
+	mys, err := GenerateUUIDs(http.DefaultClient, apikey, 10)
 
 	if err != nil {
 		fmt.Println(err)
@@ -105,7 +106,7 @@ func TestGenerateUUIDs(t *testing.T) {
 }
 
 func TestGenerateBlobs(t *testing.T) {
-	mys, err := GenerateBlobs(apikey, 10, 8)
+	mys, err := GenerateBlobs(http.DefaultClient, apikey, 10, 8)
 
 	if err != nil {
 		fmt.Println(err)
@@ -123,7 +124,7 @@ func TestGenerateBlobs(t *testing.T) {
 }
 
 func TestGetUsage(t *testing.T) {
-	res, err := GetUsage(apikey)
+	res, err := GetUsage(http.DefaultClient, apikey)
 
 	if err != nil {
 		fmt.Println(err)
@@ -137,7 +138,7 @@ func TestGetUsage(t *testing.T) {
 }
 
 func TestInvalidkey(t *testing.T) {
-	_, err := GetUsage("foobar")
+	_, err := GetUsage(http.DefaultClient, "foobar")
 
 	if err != nil {
 		if testing.Verbose() {
@@ -153,7 +154,7 @@ func TestInvalidkey(t *testing.T) {
 
 func TestCall(t *testing.T) {
 
-	rs, _, err := Call(apikey, "generateSignedIntegers", 2, 1, 1, 20, true)
+	rs, _, err := Call(http.DefaultClient, apikey, "generateSignedIntegers", 2, 1, 1, 20, true)
 	if err != nil {
 		t.Error(err)
 	}
